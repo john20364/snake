@@ -133,6 +133,7 @@ class SnakeEngine extends JCBGameEngine {
             }
 
             bGameOver = this.bDead;
+            
             // Put snake body in field
             this.aSnake.forEach((s) => {
                 this.aField[s[1] * this.nFieldWidth + s[0]] = this.bDead ? "+" : "O";
@@ -201,20 +202,20 @@ class SnakeEngine extends JCBGameEngine {
         this.clearscreen("black");
         
         for (let i = 0; i < this.nFieldWidth; i++) {
-            this.fillBox(i * this.nScale,  this.nYOffset * this.nScale, this.nScale, "gray"); 
+            this.fillBox(i * this.nScale,  (this.nYOffset-1) * this.nScale, this.nScale, "gray"); 
         }
         this.context.fillStyle = "lime";
         this.context.font="20px Arial";
         this.context.fillText("S N A K E       Score: " + this.nScore, 
-                              (this.nYOffset - 1) * this.nScale, 
-                              (this.nYOffset - 1) * this.nScale);
+                              (this.nYOffset - 2) * this.nScale, 
+                              (this.nYOffset - 2) * this.nScale);
         
         // Render field
         for (let y = 0; y < this.nFieldHeight; y++) {
             for (let x = 0; x < this.nFieldWidth; x++) {
 
                 let xScreen = x * this.nScale;
-                let yScreen = (y + this.nYOffset + 1) * this.nScale;
+                let yScreen = (y + this.nYOffset) * this.nScale;
 
                 switch (this.aField[y * this.nFieldWidth + x]) {
                     case "O":
